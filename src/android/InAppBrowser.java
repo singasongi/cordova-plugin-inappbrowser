@@ -234,6 +234,29 @@ public class InAppBrowser extends CordovaPlugin {
                                 LOG.e(LOG_TAG, "Error dialing " + url + ": " + e.toString());
                             }
                         }
+                        // go to background 
+                        else if (url.startsWith("back:")) {
+                            try {
+                                Intent intent = new Intent(Intent.ACTION_MAIN);
+                                intent.addCategory(Intent.CATEGORY_HOME);
+                                intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);//
+                                //gomin...
+                                cordova.getActivity().startActivity(intent);
+                            } catch (android.content.ActivityNotFoundException e) {
+                                LOG.e(LOG_TAG, "Error go to background " + url + ":" + e.toString());
+                            }
+                        }
+                        // back to foreground 
+                        else if (url.startsWith("fore:")) {
+                            try {
+                                Intent intent = new Intent(cordova.getActivity(), cordova.getActivity().getClass());
+                                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
+                                PendingIntent pendingIntent = PendingIntent.getActivity(cordova.getActivity(), 0, intent, 0);
+                                // pendingIntent.send();
+                            } catch (android.content.ActivityNotFoundException e) {
+                                LOG.e(LOG_TAG, "Error back to foreground " + url + ":" + e.toString());
+                            }
+                        }
                         // load in InAppBrowser
                         else {
                             LOG.d(LOG_TAG, "loading in InAppBrowser");
