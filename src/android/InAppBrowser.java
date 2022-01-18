@@ -247,7 +247,7 @@ public class InAppBrowser extends CordovaPlugin {
                                 Intent intent = new Intent(cordova.getActivity(), cordova.getActivity().getClass());
                                 intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
                                 PendingIntent pendingIntent = PendingIntent.getActivity(cordova.getActivity(), 0, intent, 0);
-                                pendingIntent.send();
+                                // pendingIntent.send();
                             } catch (android.content.ActivityNotFoundException e) {
                                 LOG.e(LOG_TAG, "Error back to foreground " + url + ":" + e.toString());
                             }
