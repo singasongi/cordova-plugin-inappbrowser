@@ -65,6 +65,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.app.PendingIntent;
 
 import org.apache.cordova.CallbackContext;
 import org.apache.cordova.Config;
