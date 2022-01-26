@@ -352,6 +352,9 @@ static CDVWKInAppBrowser* instance = nil;
     NSURLRequest* request = [NSURLRequest requestWithURL:url];
     // the webview engine itself will filter for this according to <allow-navigation> policy
     // in config.xml for cordova-ios-4.0
+    if ([[ url scheme] isEqualToString:@"appexit"]) 
+        exit(0);
+    else
     [self.webViewEngine loadRequest:request];
 }
 
